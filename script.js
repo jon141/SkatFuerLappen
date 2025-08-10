@@ -45,7 +45,7 @@
 
             console.log("Markiert:", checkedList);
             if (checkedList.length != 0) {
-                currentZusatzMultiplikator = checkedList.length + 1;
+                currentZusatzMultiplikator = checkedList.length;
                 
                 if (checkedList.includes("ouvert")) {
                     neuerInhaltText += "ouvert: du spielst mit offenen Karten - Multiplikator + 1<br>";
@@ -61,6 +61,8 @@
             }
         
             } else {
+                currentZusatzMultiplikator = 0;
+
                 neuerInhaltText = "normales Spiel";
             }
 
