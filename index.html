@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reizhilfe für Lappen</title>
+
+    <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+
+<body>
+    
+    <h1>Skat-Reizhilfe für Lappen</h1>
+    <div>
+        <h3>Wähle dein Spiel aus:</h3>
+        <select id="SpielwahlKomboBox">
+            <option value="0">Farbspiel - Kreuz</option>
+            <option value="1">Farbspiel - Piek</option>
+            <option value="2">Farbspiel - Herz</option>
+            <option value="3">Farbspiel - Karo</option>
+            <option value="4">Null</option>
+            <option value="5">Krank</option>
+        </select>
+
+        <div id="SpielInfoBox">
+            Beim Farbspiel Kreuz sind alle Bauern und Karten der Farbe Kreuz Trumpf.
+            Kreuz hat den Wert 12.
+        </div>
+    </div>
+ 
+        <h3>Zusätze:</h3>
+        <div id="SpielZusätzeCheckboxes">
+            <label><input type="checkbox" value="ouvert"> Ouvert</label>
+            <label><input type="checkbox" value="schwarz"> Schwarz</label>
+            <label><input type="checkbox" value="schneider"> [Schneider]</label>
+        </div>
+
+        <div id="ZusätzeInfoBox">
+            normales Spiel
+        </div>
+    </div>
+
+    <div>
+        <h3>Bauern:</h3>
+        <div id="BauernCheckboxes">
+            <label><input type="checkbox" value="0"> Kreuz</label>
+            <label><input type="checkbox" value="1"> Piek</label>
+            <label><input type="checkbox" value="2"> Herz</label>
+            <label><input type="checkbox" value="3"> Karo</label>
+        </div>
+
+        <div id="BauernInfoBox">
+            
+        </div>
+    </div>
+
+    <div>
+        <h3>Ergebnis:</h3>
+
+        <div id="ErgebnisInfo">
+            
+        </div>
+    </div>
+
+
+    <script src="script.js" defer></script>
+
+</body>
+</html>
