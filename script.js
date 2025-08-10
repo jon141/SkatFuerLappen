@@ -86,7 +86,7 @@
             if (checkedList.includes(0)) {
                 for (let i = 1; i < 5; i++) {
                     if (!checkedList.includes(i)) {
-                        currentBauernMultiplikator = i;
+                        currentBauernMultiplikator = i+1;
                         neuerInhaltText = `Mit ${i} gespielt ${i+1}.`;
                         break;
                     }
@@ -94,7 +94,7 @@
             } else {
                 for (let i = 0; i < 5; i++) {
                     if (checkedList.includes(i)) {
-                        currentBauernMultiplikator = i;
+                        currentBauernMultiplikator = i+1;
                         neuerInhaltText = `Ohne ${i} gespielt ${i+1}.`;
                         break
                     }
