@@ -1,4 +1,4 @@
- let farbspielReihenfolge = ["Kreuz", "Piek", "Herz", "Karo"];
+let farbspielReihenfolge = ["Kreuz", "Piek", "Herz", "Karo"];
 let ZusätzeReihenfolge = ["ouvert", "schwarz", "schneider"];
 
 
@@ -7,6 +7,9 @@ let currentBauernMultiplikator = 5;
 let currentZusatzMultiplikator = 0;
 let spielNull = false;
 
+let bauernText = ""
+let currentZusatzListe = []
+
 function updateSpielInfo() {
     let spielWahlBox = document.getElementById("SpielwahlKomboBox");
     let spielNr = parseInt(spielWahlBox.value, 10);
@@ -14,16 +17,16 @@ function updateSpielInfo() {
     console.log("Neuer Wert:", spielNr);
     if (spielNr <= 3) {
         let farbe = farbspielReihenfolge[spielNr];
-        neuerInhaltText = `Beim Farbspiel ${farbe} sind alle Bauern und Karten der Farbe ${farbe} Trumpf. <br><br>${farbe} hat den Wert ${12 - spielNr}`;
+        neuerInhaltText = `- Die Farbe und die Bauern sind Trumpf <br> - ${farbe} hat den Wert ${12 - spielNr}`;
         currentReizwert = 12 - spielNr;
         spielNull = false;
 
     } else if (spielNr === 4) {
-        neuerInhaltText = "Beim Spiel Null gibt es keine Trüpfe (auch nicht die Bauern), die 10er sind niedrig. <br>Du darfst keinen Stich machen - ein Stich von deiner Seite beendet das Spiel. <br><br>Gereizt wird bis 23."
+        neuerInhaltText = "- keine Trüpfe (auch nicht Bauern)<br>- die 10er sind niedrig. <br> - Du darfst keinen Stich machen <br>- ein Stich von deiner Seite beendet das Spiel. <br>- Gereizt wird bis 23."
         currentReizwert = 23;
         spielNull = true;
     } else if (spielNr === 5) {
-        neuerInhaltText = "Nur Bauern sind Trumpf!<br><br> Das Spiel hat den Wert 24.";
+        neuerInhaltText = "- Nur Bauern sind Trumpf!<br>- Das Spiel hat den Wert 24.";
         currentReizwert = 24;
         spielNull = false;
     } else {
@@ -65,9 +68,9 @@ function updateZusatzInfo() {
 
         neuerInhaltText = "normales Spiel";
     }
-
-document.getElementById("ZusätzeInfoBox").innerHTML = neuerInhaltText; 
-updateResult()           
+    currentZusatzListe = checkedList
+    document.getElementById("ZusätzeInfoBox").innerHTML = neuerInhaltText; 
+    updateResult()           
 
 }
 
@@ -87,7 +90,7 @@ function updateBauern() {
         for (let i = 1; i < 5; i++) {
             if (!checkedList.includes(i)) {
                 currentBauernMultiplikator = i+1;
-                neuerInhaltText = `Mit ${i} gespielt ${i+1}.`;
+                neuerInhaltText = `Mit ${i} gespielt ${i+1}`;
                 break;
             }
         } 
@@ -95,16 +98,17 @@ function updateBauern() {
         for (let i = 0; i < 5; i++) {
             if (checkedList.includes(i)) {
                 currentBauernMultiplikator = i+1;
-                neuerInhaltText = `Ohne ${i} gespielt ${i+1}.`;
+                neuerInhaltText = `Ohne ${i} gespielt ${i+1}`;
                 break
             }
         } 
     }
     if (checkedList.length === 0) {
-        neuerInhaltText = `Ohne 4 gespielt 5.`;
+        neuerInhaltText = `Ohne 4 gespielt 5`;
         currentBauernMultiplikator = 5;
 
     }
+    bauernText = neuerInhaltText
     document.getElementById("BauernInfoBox").innerHTML = neuerInhaltText;    
     updateResult()        
 
@@ -130,14 +134,24 @@ function updateResult() {
         let ohneLetzteStelle = parseInt(finalReizWert.toString().slice(0, -1), 10); 
 
         if (letzteStelle>4) {
-            miese = ohneLetzteStelle + 1
+            miese = ohneLetzteStelle + 1;
         } else {
-            miese = ohneLetzteStelle
+            miese = ohneLetzteStelle;
         }
+
+        let sprichText = `Sprich: ${bauernText}`;
+
+        for (let i = 0; i < currentZusatzListe.length; i++) {
+            sprichText += ", " + currentZusatzListe[i] + " " + (currentBauernMultiplikator + i + 1);
+        }
+
+        sprichText += `, mal ${currentReizwert} ergibt ${finalReizWert}`
+        
+
             
-        neuerInhaltText = `Reizwert: ${finalReizWert} <br> Miese für Gegner bei Sieg ${miese} <br> Miese für dich bei Niederlage ${miese*2}`
+        neuerInhaltText = `Reizwert: ${finalReizWert} <br> Miese für Gegner bei Sieg: ${miese} <br> Miese für dich bei Niederlage: ${miese*2} <br> ${sprichText}`
     } else {
-        neuerInhaltText = `Reizwert: 23 <br> Miese für Gegner bei Sieg 2 <br> Miese für dich bei Niederlage 4`
+        neuerInhaltText = `Reizwert: 23 <br> Miese für Gegner bei Sieg: 2 <br> Miese für dich bei Niederlage: 4`
 
     }
 
