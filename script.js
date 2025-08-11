@@ -17,7 +17,7 @@ function updateSpielInfo() {
     console.log("Neuer Wert:", spielNr);
     if (spielNr <= 3) {
         let farbe = farbspielReihenfolge[spielNr];
-        neuerInhaltText = `- Die Farbe und die Bauern sind Trumpf <br> - ${farbe} hat den Wert ${12 - spielNr}`;
+        neuerInhaltText = `- die Farbe und die Bauern sind Trumpf <br> - ${farbe} hat den Wert ${12 - spielNr}`;
         currentReizwert = 12 - spielNr;
         spielNull = false;
 
@@ -98,13 +98,13 @@ function updateBauern() {
         for (let i = 0; i < 5; i++) {
             if (checkedList.includes(i)) {
                 currentBauernMultiplikator = i+1;
-                neuerInhaltText = `Ohne ${i} gespielt ${i+1}`;
+                neuerInhaltText = `ohne ${i} gespielt ${i+1}`;
                 break
             }
         } 
     }
     if (checkedList.length === 0) {
-        neuerInhaltText = `Ohne 4 gespielt 5`;
+        neuerInhaltText = `ohne 4 gespielt 5`;
         currentBauernMultiplikator = 5;
 
     }
