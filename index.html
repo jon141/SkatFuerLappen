@@ -1,75 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Reizhilfe für Lappen</title>
-
-    <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
-  
+    <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-    
-    <h1>Skat-Reizhilfe für Lappen</h1>
-    <div>
-        <h3 class="inputHeading">Wähle dein Spiel aus:</h3>
-        <select id="SpielwahlKomboBox">
-            <option value="0">Farbspiel - Kreuz</option>
-            <option value="1">Farbspiel - Piek</option>
-            <option value="2">Farbspiel - Herz</option>
-            <option value="3">Farbspiel - Karo</option>
-            <option value="4">Null</option>
-            <option value="5">Krank</option>
-        </select>
 
-        <div class="infoBox" id="SpielInfoBox">
-            Beim Farbspiel Kreuz sind alle Bauern und Karten der Farbe Kreuz Trumpf.
-            Kreuz hat den Wert 12.
-        </div>
+    <!-- Bestätigungsbutton -->
+    <div id="confirmWrapper" style="text-align:center; margin: 40px;">
+        <h1>Herzlich Willkommen bei Skat für Lappen!</h1>
+      <button id="confirmBtn" style="font-size: 1.2rem; padding: 10px 20px; cursor:pointer;">
+        Hiermit bestätigst du offiziell, dass du beim Skat noch ein Lappen bist.
+      </button>
     </div>
+
+    <!-- Hauptinhalt, initial versteckt -->
+    <div id="mainContent" style="display:none;">
+
+        <h1>Skat-Reizhilfe für Lappen</h1>
+
+        <div>
+            <h3 class="inputHeading">Wähle dein Spiel aus:</h3>
+            <select id="SpielwahlKomboBox">
+                <option value="0">Farbspiel - Kreuz</option>
+                <option value="1">Farbspiel - Piek</option>
+                <option value="2">Farbspiel - Herz</option>
+                <option value="3">Farbspiel - Karo</option>
+                <option value="4">Null</option>
+                <option value="5">Krank</option>
+            </select>
+
+            <div class="infoBox" id="SpielInfoBox">
+                Beim Farbspiel Kreuz sind alle Bauern und Karten der Farbe Kreuz Trumpf.
+                Kreuz hat den Wert 12.
+            </div>
+        </div>
 
         <div class="headingSelectionGroup">
             <h3 class="inputHeading">Zusätze:</h3>
             <div class="selectionCheckboxes" id="SpielZusätzeCheckboxes">
-                <label><input type="checkbox" value="ouvert"> Ouvert</label>
-                <label><input type="checkbox" value="schwarz"> Schwarz</label>
-                <label><input type="checkbox" value="schneider"> [Schneider]</label>
+                <label><input type="checkbox" value="ouvert" /> Ouvert</label>
+                <label><input type="checkbox" value="schwarz" /> Schwarz</label>
+                <label><input type="checkbox" value="schneider" /> [Schneider]</label>
             </div>
         </div>
 
         <div class="infoBox" id="ZusätzeInfoBox">
             normales Spiel
         </div>
-    </div>
 
-    <div>
-        <div class="headingSelectionGroup">
-            <h3 class="inputHeading">Bauern:</h3>
-            <div class="selectionCheckboxes" id="BauernCheckboxes">
-                <label><input type="checkbox" value="0"> Kreuz</label>
-                <label><input type="checkbox" value="1"> Piek</label>
-                <label><input type="checkbox" value="2"> Herz</label>
-                <label><input type="checkbox" value="3"> Karo</label>
+        <div>
+            <div class="headingSelectionGroup">
+                <h3 class="inputHeading">Bauern:</h3>
+                <div class="selectionCheckboxes" id="BauernCheckboxes">
+                    <label><input type="checkbox" value="0" /> Kreuz</label>
+                    <label><input type="checkbox" value="1" /> Piek</label>
+                    <label><input type="checkbox" value="2" /> Herz</label>
+                    <label><input type="checkbox" value="3" /> Karo</label>
+                </div>
             </div>
+            <div class="infoBox" id="BauernInfoBox"></div>
+        </div>
 
+        <div class="ergebnisDiv">
+            <h3 class="ergebnisHeading">Ergebnis:</h3>
+            <div id="ErgebnisInfo"></div>
         </div>
-        <div class="infoBox" id="BauernInfoBox">
-            
-        </div>
+
     </div>
-
-    <div class="ergebnisDiv">
-        <h3 class="ergebnisHeading" >Ergebnis:</h3>
-
-        <div id="ErgebnisInfo">
-            
-        </div>
-    </div>
-
 
     <script src="script.js" defer></script>
+    <script>
+      // Event Listener für den Bestätigungsbutton
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.getElementById("confirmBtn");
+        const mainContent = document.getElementById("mainContent");
+        const confirmWrapper = document.getElementById("confirmWrapper");
+
+        btn.addEventListener("click", () => {
+          confirmWrapper.style.display = "none"; // Button ausblenden
+          mainContent.style.display = "block";   // Hauptinhalt zeigen
+        });
+      });
+    </script>
 
 </body>
 </html>
