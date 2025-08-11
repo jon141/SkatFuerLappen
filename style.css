@@ -100,8 +100,7 @@ button:hover {
     display: flex;
     gap: 12px; /* Abstand zwischen den Optionen */
     padding: 10px;
-    background-color: #f9f9f9; /* sanfter Hintergrund */
-    border: 1px solid #ddd;
+    /*border: 1px solid #ddd;*/
     border-radius: 8px;
     font-family: sans-serif;
 }
