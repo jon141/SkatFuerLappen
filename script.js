@@ -22,7 +22,7 @@ function updateSpielInfo() {
         spielNull = false;
 
     } else if (spielNr === 4) {
-        neuerInhaltText = "- keine Trüpfe (auch nicht Bauern)<br>- die 10er sind niedrig. <br> - Du darfst keinen Stich machen <br>- ein Stich von deiner Seite beendet das Spiel. <br>- Gereizt wird bis 23."
+        neuerInhaltText = "- keine Trüpfe (auch nicht Bauern)<br>- die 10er sind niedrig <br> - du darfst keinen Stich machen <br>- ein Stich von deiner Seite beendet das Spiel <br>- gereizt wird bis 23"
         currentReizwert = 23;
         spielNull = true;
     } else if (spielNr === 5) {
@@ -51,16 +51,16 @@ function updateZusatzInfo() {
         currentZusatzMultiplikator = checkedList.length;
         
         if (checkedList.includes("ouvert")) {
-            neuerInhaltText += "ouvert: du spielst mit offenen Karten - Multiplikator + 1<br>";
+            neuerInhaltText += "<b>ouvert</b>: du spielst mit offenen Karten<br>";
         }
         
         if (checkedList.includes("schwarz")) {
-            neuerInhaltText += "schwarz: du darfst den Stock nicht aufnehmen - Multiplikator + 1<br>";
+            neuerInhaltText += "<b>schwarz</b>: du darfst den Stock nicht aufnehmen<br>";
 
         }
 
         if (checkedList.includes("schneider")) {
-            neuerInhaltText += "schneider: du oder deine Gegner haben unter 30 Punkte - (nicht wichtig fürs Reizen, aber wichtig für Punkte am Spielende) - Multiplikator + 1<br>";
+            neuerInhaltText += "<b>schneider</b>: du oder deine Gegner haben unter 30 Punkte - (fürs Spielende)<br>";
     }
 
     } else {
@@ -139,19 +139,24 @@ function updateResult() {
             miese = ohneLetzteStelle;
         }
 
-        let sprichText = `Sprich: ${bauernText}`;
+        let sprichText = `<b>Sprich:</b> <span class="black">${bauernText}</span>`;
 
         for (let i = 0; i < currentZusatzListe.length; i++) {
             sprichText += ", " + currentZusatzListe[i] + " " + (currentBauernMultiplikator + i + 1);
         }
 
-        sprichText += `, mal ${currentReizwert} ergibt ${finalReizWert}`
+        sprichText += `<span class="black">, mal ${currentReizwert} ergibt ${finalReizWert}</span>`
         
 
             
-        neuerInhaltText = `Reizwert: ${finalReizWert} <br> Miese für Gegner bei Sieg: ${miese} <br> Miese für dich bei Niederlage: ${miese*2} <br> ${sprichText}`
+        neuerInhaltText = `<b>Reizwert:</b> <span class="red">${finalReizWert}</span> <br>
+                   <b>Miese für Gegner bei Sieg:</b> <span class="blue">${miese}</span> <br>
+                   <b>Miese für dich bei Niederlage:</b> <span class="green">${miese*2}</span> <br>
+                   ${sprichText}`;
     } else {
-        neuerInhaltText = `Reizwert: 23 <br> Miese für Gegner bei Sieg: 2 <br> Miese für dich bei Niederlage: 4`
+        neuerInhaltText = `<b>Reizwert:</b> <span class="red">23</span> <br> 
+                   <b>Miese für Gegner bei Sieg:</b> <span class="blue">2</span> <br> 
+                   <b>Miese für dich bei Niederlage:</b> <span class="green">4</span>`;
 
     }
 

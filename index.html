@@ -14,7 +14,7 @@
     
     <h1>Skat-Reizhilfe für Lappen</h1>
     <div>
-        <h3>Wähle dein Spiel aus:</h3>
+        <h3 class="inputHeading">Wähle dein Spiel aus:</h3>
         <select id="SpielwahlKomboBox">
             <option value="0">Farbspiel - Kreuz</option>
             <option value="1">Farbspiel - Piek</option>
@@ -24,40 +24,44 @@
             <option value="5">Krank</option>
         </select>
 
-        <div id="SpielInfoBox">
+        <div class="infoBox" id="SpielInfoBox">
             Beim Farbspiel Kreuz sind alle Bauern und Karten der Farbe Kreuz Trumpf.
             Kreuz hat den Wert 12.
         </div>
     </div>
- 
-        <h3>Zusätze:</h3>
-        <div id="SpielZusätzeCheckboxes">
-            <label><input type="checkbox" value="ouvert"> Ouvert</label>
-            <label><input type="checkbox" value="schwarz"> Schwarz</label>
-            <label><input type="checkbox" value="schneider"> [Schneider]</label>
+
+        <div class="headingSelectionGroup">
+            <h3 class="inputHeading">Zusätze:</h3>
+            <div class="selectionCheckboxes" id="SpielZusätzeCheckboxes">
+                <label><input type="checkbox" value="ouvert"> Ouvert</label>
+                <label><input type="checkbox" value="schwarz"> Schwarz</label>
+                <label><input type="checkbox" value="schneider"> [Schneider]</label>
+            </div>
         </div>
 
-        <div id="ZusätzeInfoBox">
+        <div class="infoBox" id="ZusätzeInfoBox">
             normales Spiel
         </div>
     </div>
 
     <div>
-        <h3>Bauern:</h3>
-        <div id="BauernCheckboxes">
-            <label><input type="checkbox" value="0"> Kreuz</label>
-            <label><input type="checkbox" value="1"> Piek</label>
-            <label><input type="checkbox" value="2"> Herz</label>
-            <label><input type="checkbox" value="3"> Karo</label>
-        </div>
+        <div class="headingSelectionGroup">
+            <h3 class="inputHeading">Bauern:</h3>
+            <div class="selectionCheckboxes" id="BauernCheckboxes">
+                <label><input type="checkbox" value="0"> Kreuz</label>
+                <label><input type="checkbox" value="1"> Piek</label>
+                <label><input type="checkbox" value="2"> Herz</label>
+                <label><input type="checkbox" value="3"> Karo</label>
+            </div>
 
-        <div id="BauernInfoBox">
+        </div>
+        <div class="infoBox" id="BauernInfoBox">
             
         </div>
     </div>
 
-    <div>
-        <h3>Ergebnis:</h3>
+    <div class="ergebnisDiv">
+        <h3 class="ergebnisHeading" >Ergebnis:</h3>
 
         <div id="ErgebnisInfo">
             
