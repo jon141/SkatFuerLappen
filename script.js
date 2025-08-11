@@ -95,7 +95,7 @@ function updateBauern() {
         for (let i = 1; i < 5; i++) {
             if (!checkedList.includes(i)) {
                 currentBauernMultiplikator = i+1;
-                neuerInhaltText = `Mit ${i} gespielt ${i+1}`;
+                neuerInhaltText = `mit ${i} gespielt ${i+1}`;
                 break;
             }
         } 
@@ -103,13 +103,13 @@ function updateBauern() {
         for (let i = 0; i < 5; i++) {
             if (checkedList.includes(i)) {
                 currentBauernMultiplikator = i+1;
-                neuerInhaltText = `Ohne ${i} gespielt ${i+1}`;
+                neuerInhaltText = `ohne ${i} gespielt ${i+1}`;
                 break
             }
         } 
     }
     if (checkedList.length === 0) {
-        neuerInhaltText = `Ohne 4 gespielt 5`;
+        neuerInhaltText = `ohne 4 gespielt 5`;
         currentBauernMultiplikator = 5;
 
     }
