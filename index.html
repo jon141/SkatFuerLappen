@@ -34,10 +34,10 @@
         <div>
             <h3 class="inputHeading">Wähle dein Spiel aus:</h3>
             <select id="SpielwahlKomboBox">
-                <option value="0">Farbspiel - Kreuz</option>
-                <option value="1">Farbspiel - Piek</option>
-                <option value="2">Farbspiel - Herz</option>
-                <option value="3">Farbspiel - Karo</option>
+                <option value="0">Farbspiel - ♣ Kreuz</option>
+                <option value="1">Farbspiel - ♠ Pik</option>
+                <option value="2">Farbspiel - ♥ Herz</option>
+                <option value="3">Farbspiel - ♦ Karo</option>
                 <option value="4">Null</option>
                 <option value="5">Grand</option>
             </select>
@@ -66,11 +66,24 @@
             <div class="headingSelectionGroup">
                 <h3 class="inputHeading">Bauern:</h3>
                 <div class="selectionCheckboxes" id="BauernCheckboxes">
-                    <label><input type="checkbox" value="0" /> Kreuz</label>
-                    <label><input type="checkbox" value="1" /> Piek</label>
-                    <label><input type="checkbox" value="2" /> Herz</label>
-                    <label><input type="checkbox" value="3" /> Karo</label>
+                    <label>
+                        <input type="checkbox" value="0" />
+                        <span style="color:black;">♣ Kreuz</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="1" />
+                        <span style="color:black;">♠ Pik</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="2" />
+                        <span style="color:red;">♥ Herz</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="3" />
+                        <span style="color:red;">♦ Karo</span>
+                    </label>
                 </div>
+
             </div>
             <div class="infoBox" id="BauernInfoBox"></div>
         </div>
