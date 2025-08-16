@@ -22,8 +22,7 @@ function updateSpielInfo() {
         spielNull = false;
 
     } else if (spielNr === 4) {
-        neuerInhaltText = "- keine Trüpfe (auch nicht Bauern)<br>- die 10er sind niedrig <br> - du darfst keinen Stich machen <br>- ein Stich von deiner Seite beendet das Spiel <br>- gereizt wird bis 23"
-        currentReizwert = 23;
+        neuerInhaltText = "- keine Trüpfe (auch nicht Bauern)<br>- die 10er sind niedrig <br> - du darfst keinen Stich machen <br>- ein Stich von deiner Seite beendet das Spiel <br>- Bauern haben keinen Einfluss auf den Reizwert <br> - Schwarz und Schneider gibt es bei Null nicht"
         spielNull = true;
     } else if (spielNr === 5) {
         neuerInhaltText = "- Nur Bauern sind Trumpf!<br>- Grand hat den Wert 24";
@@ -35,6 +34,7 @@ function updateSpielInfo() {
     document.getElementById("SpielInfoBox").innerHTML = neuerInhaltText;            
     
     updateResult()
+    updateZusatzInfo()
 
     //document.getElementById("SpielInfoBox").innerHTML = neuerInhaltText;
 }
@@ -54,11 +54,11 @@ function updateZusatzInfo() {
             neuerInhaltText += "<b>Hand</b>: du darfst den Stock nicht aufnehmen<br>";
         }
         
-        if (checkedList.includes("Schneider")) {
+        if (checkedList.includes("Schneider") && !spielNull) {
             neuerInhaltText += "<b>Schneider</b>: deine Gegner machen höchstens 30 Punkte<br>";
         }        
         
-        if (checkedList.includes("Schwarz")) {
+        if (checkedList.includes("Schwarz") && !spielNull) {
             neuerInhaltText += "<b>Schwarz</b>: du machst alle Stiche<br>";
         }
 
@@ -66,13 +66,20 @@ function updateZusatzInfo() {
             neuerInhaltText += "<b>Ouvert</b>: du spielst mit offenen Karten<br>";
         }
 
-
+        console.log("checker")
 
     } else {
         currentZusatzMultiplikator = 0;
 
         neuerInhaltText = "normales Spiel";
     }
+
+    if (neuerInhaltText === "") {
+        neuerInhaltText = "normales Spiel"
+    }
+
+    console.log("wichtig", neuerInhaltText)
+
     currentZusatzListe = checkedList
     document.getElementById("ZusätzeInfoBox").innerHTML = neuerInhaltText; 
     updateResult()           
@@ -130,10 +137,12 @@ updateBauern()
 function updateResult() {
     let finalReizWert = 0;
     let neuerInhaltText = "";
+    let miese = 0
+    let sprichText = ""
+
     if (!spielNull) {
         console.log(currentBauernMultiplikator, currentZusatzMultiplikator, currentReizwert)
         finalReizWert = (currentBauernMultiplikator + currentZusatzMultiplikator) * currentReizwert;
-        let miese = 0
         // parseInt((e.value), 10)
         let letzteStelle = parseInt(finalReizWert.toString().slice(-1), 10);  
         let ohneLetzteStelle = parseInt(finalReizWert.toString().slice(0, -1), 10); 
@@ -144,7 +153,7 @@ function updateResult() {
             miese = ohneLetzteStelle;
         }
 
-        let sprichText = `<b>Sprich:</b> <span class="black">${bauernText}</span>`;
+        sprichText = `<b>Sprich:</b> <span class="black">${bauernText}</span>`;
 
         for (let i = 0; i < currentZusatzListe.length; i++) {
             //sprichText += ", " + currentZusatzListe[i] + " " + (currentBauernMultiplikator + i + 1);
@@ -153,18 +162,37 @@ function updateResult() {
 
         sprichText += `<span class="black">, mal ${currentReizwert} ergibt ${finalReizWert}</span>`
         
-
-            
-        neuerInhaltText = `<b>Reizwert:</b> <span class="red">${finalReizWert}</span> <br>
-                   <b>Miese für Gegner bei Sieg:</b> <span class="blue">${miese}</span> <br>
-                   <b>Miese für dich bei Niederlage:</b> <span class="green">${miese*2}</span> <br>
-                   ${sprichText}`;
     } else {
-        neuerInhaltText = `<b>Reizwert:</b> <span class="red">23</span> <br> 
-                   <b>Miese für Gegner bei Sieg:</b> <span class="blue">2</span> <br> 
-                   <b>Miese für dich bei Niederlage:</b> <span class="green">4</span>`;
+        console.log(currentZusatzListe)
+        if (currentZusatzListe.includes("Hand") && currentZusatzListe.includes("Ouvert")) {
+            console.log("Hand Ouvert")
+            finalReizWert = 59
+            miese = 6
+            sprichText = "Null Hand Ouvert"
+        } else {
+            if (currentZusatzListe.includes("Hand")) {
+                finalReizWert = 35
+                miese = 4
+                sprichText = "Null Hand"
+                console.log('successful')
+            } else if (currentZusatzListe.includes("Ouvert")) {
+                finalReizWert = 46
+                miese = 5
+                sprichText = "Null Ouvert"
+            } else {
+                finalReizWert = 23
+                miese = 2
+                sprichText = "Null"
+            }
+        }
 
     }
+        
+    neuerInhaltText = `<b>Reizwert:</b> <span class="red">${finalReizWert}</span> <br>
+                   <b>Miese für Gegner bei Sieg:</b> <span class="blue">${miese}</span> <br>
+                   <b>Miese für dich bei Niederlage:</b> <span class="green">${miese*2}</span> <br>
+                   <b> Sprich: </b><span class="black">${sprichText}</span>`;
+                   
 
     document.getElementById("ErgebnisInfo").innerHTML = neuerInhaltText;            
 
@@ -174,3 +202,6 @@ function updateResult() {
 document.getElementById("SpielwahlKomboBox").addEventListener("change", (event) => {updateSpielInfo()});
 
 updateResult()
+
+
+
