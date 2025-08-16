@@ -153,7 +153,7 @@ function updateResult() {
             miese = ohneLetzteStelle;
         }
 
-        sprichText = `<b>Sprich:</b> <span class="black">${bauernText}</span>`;
+        sprichText = `<b></b> <span class="black">${bauernText}</span>`;
 
         for (let i = 0; i < currentZusatzListe.length; i++) {
             //sprichText += ", " + currentZusatzListe[i] + " " + (currentBauernMultiplikator + i + 1);
